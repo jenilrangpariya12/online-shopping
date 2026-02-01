@@ -1,13 +1,13 @@
 // Type definitions for Razorpay integration
 
-export interface RazorpayResponse {
+interface RazorpayResponse {
   razorpay_payment_id: string;
   razorpay_order_id: string;
   razorpay_signature: string;
 }
 
-export interface RazorpayOptions {
-  key: string;
+interface RazorpayOptions {
+  key: string | undefined;
   amount: number;
   currency: string;
   name: string;
@@ -23,16 +23,14 @@ export interface RazorpayOptions {
   };
 }
 
-export interface RazorpayInstance {
+interface RazorpayInstance {
   open(): void;
 }
 
-export interface RazorpayConstructor {
+interface RazorpayConstructor {
   new (options: RazorpayOptions): RazorpayInstance;
 }
 
-declare global {
-  interface Window {
-    Razorpay: RazorpayConstructor;
-  }
+interface Window {
+  Razorpay: RazorpayConstructor;
 }
