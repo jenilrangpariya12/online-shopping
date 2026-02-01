@@ -5,10 +5,14 @@ export function createClient() {
   const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   if (!supabaseUrl || !supabaseKey) {
-    console.error("Supabase credentials missing! Check .env.local");
+    console.warn("Supabase credentials missing! Using placeholder for build.");
   }
 
-  const client = createBrowserClient(supabaseUrl || "", supabaseKey || "");
+  // Use placeholders to prevent build crash if env vars are missing
+  const url = supabaseUrl || "https://placeholder.supabase.co";
+  const key = supabaseKey || "placeholder-key";
+
+  const client = createBrowserClient(url, key);
   
   return client
 }
