@@ -5,13 +5,10 @@ export function createClient() {
   const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   if (!supabaseUrl || !supabaseKey) {
-    console.error("Supabase credentials missing!");
-    console.error("URL:", supabaseUrl);
-    console.error("Key:", supabaseKey ? "Present" : "Missing");
-    throw new Error("Supabase URL and Key are required!");
+    console.error("Supabase credentials missing! Check .env.local");
   }
 
-  const client = createBrowserClient(supabaseUrl, supabaseKey);
+  const client = createBrowserClient(supabaseUrl || "", supabaseKey || "");
   
   return client
 }
